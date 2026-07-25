@@ -1,27 +1,39 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
-// Load persisted state from localStorage
+// Load from logged-in user's transactions + currency key
 const loadState = () => {
   try {
-    const data = localStorage.getItem('fintrack-state')
-    return data ? JSON.parse(data) : undefined
+    const user = JSON.parse(localStorage.getItem('loggedin-user'))
+    const currency = localStorage.getItem('currency') || 'INR'
+    if (user) {
+      return {
+        transactions: user.transactions || [],
+        currency,
+        userName: user.name || 'User Name',
+      }
+    }
+    return { transactions: [], currency, userName: 'User Name' }
   } catch {
-    return undefined
+    return { transactions: [], currency: 'INR', userName: 'User Name' }
   }
-}
-
-const persisted = loadState()
-
-const initialState = persisted || {
-  transactions: [],
-  currency: 'INR',
-  userName: 'User Name',
 }
 
 const transactionsSlice = createSlice({
   name: 'transactions',
-  initialState,
+  initialState: loadState(),
   reducers: {
+    // Called after login to hydrate store with the user's saved transactions
+    loadUserData: (state, action) => {
+      state.transactions = action.payload.transactions || []
+      state.userName = action.payload.name || 'User Name'
+    },
+
+    // Called on logout to clear in-memory state
+    resetUserData: (state) => {
+      state.transactions = []
+      state.userName = 'User Name'
+    },
+
     addTransaction: {
       reducer: (state, action) => {
         state.transactions.push(action.payload)
@@ -61,6 +73,8 @@ const transactionsSlice = createSlice({
 })
 
 export const {
+  loadUserData,
+  resetUserData,
   addTransaction,
   deleteTransaction,
   editTransaction,

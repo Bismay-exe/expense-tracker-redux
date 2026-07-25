@@ -1,9 +1,20 @@
 import React from 'react'
-import { NavLink } from 'react-router'
-import { useSelector } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router'
+import { useSelector, useDispatch } from 'react-redux'
+import { useAuth } from '../../contexts/AuthContext'
+import { resetUserData } from '../../store/transactionsSlice'
 
 const Sidebar = () => {
   const userName = useSelector((state) => state.transactions.userName)
+  const { logout } = useAuth()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    dispatch(resetUserData())  // clear Redux store first
+    logout()                   // then clear localStorage
+    navigate('/auth/login')
+  }
   return (
     <aside className="sidebar sidebar-maximized">
 
@@ -17,8 +28,8 @@ const Sidebar = () => {
         </div>
 
         <div className="logo-texts">
-          <h2>Expense Tracker</h2>
-          <p>Enterprise Finance</p>
+          <h2>Gullak</h2>
+          <p>Personal Finance</p>
         </div>
 
         <button className="sidebar-btn" type="button">
@@ -58,7 +69,7 @@ const Sidebar = () => {
         <div className="user-info">
           <p className="name">{userName}</p>
         </div>
-        <button type="button" className="logout-btn">
+        <button type="button" className="logout-btn" onClick={handleLogout}>
           <i className="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
       </div>

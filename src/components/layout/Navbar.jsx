@@ -26,7 +26,7 @@ const Navbar = ({ openModal }) => {
             </svg>
           </div>
           <div className="logo-texts">
-            <h2>FinTrack Pro</h2>
+            <h2>Gullak</h2>
             <p>Enterprise Finance</p>
           </div>
         </div>
