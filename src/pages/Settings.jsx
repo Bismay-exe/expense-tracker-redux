@@ -4,6 +4,7 @@ import Navbar from '../components/layout/Navbar'
 import ProfileCard from '../components/settings/ProfileCard'
 import CurrencyCard from '../components/settings/CurrencyCard'
 import AppearanceCard from '../components/settings/AppearanceCard'
+import DangerCard from '../components/settings/DangerCard'
 
 const Settings = () => {
   return (
@@ -25,7 +26,7 @@ const Settings = () => {
             <ProfileCard />
             <CurrencyCard />
             <AppearanceCard />
-            {/* DangerCard coming next */}
+            <DangerCard />
           </div>
         </section>
       </div>
