@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTransaction } from '../../store/transactionsSlice'
+import { editTransaction } from '../../store/transactionsSlice'
 
 const CATEGORIES = [
   { label: 'Salary',           icon: '💼', color: 'green'  },
@@ -13,9 +13,7 @@ const CATEGORIES = [
   { label: 'Other',            icon: '📦', color: 'indigo' },
 ]
 
-const today = () => new Date().toISOString().split('T')[0]
-
-const AddTransactionModal = ({ isOpen, onClose }) => {
+const EditTransactionModal = ({ transaction, onClose }) => {
   const dispatch = useDispatch()
 
   const [form, setForm] = useState({
@@ -23,10 +21,23 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
     amount: '',
     type: 'expense',
     category: 'Food & Dining',
-    date: today(),
+    date: '',
   })
 
   const [error, setError] = useState('')
+
+  // Pre-fill form when transaction changes
+  useEffect(() => {
+    if (transaction) {
+      setForm({
+        description: transaction.description,
+        amount: transaction.amount,
+        type: transaction.type,
+        category: transaction.category,
+        date: transaction.rawDate || '',
+      })
+    }
+  }, [transaction])
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -42,28 +53,29 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
     const cat = CATEGORIES.find((c) => c.label === form.category)
 
     dispatch(
-      addTransaction({
+      editTransaction({
+        ...transaction,
         description: form.description.trim(),
         amount: Number(form.amount),
         type: form.type,
         category: form.category,
         categoryIcon: cat?.icon || '📦',
         categoryColor: cat?.color || 'indigo',
+        date: form.date
+          ? new Date(form.date).toLocaleDateString('en-IN', {
+              day: '2-digit',
+              month: 'short',
+              year: 'numeric',
+            })
+          : transaction.date,
         rawDate: form.date,
-        date: new Date(form.date).toLocaleDateString('en-IN', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        }),
       })
     )
 
-    setForm({ description: '', amount: '', type: 'expense', category: 'Food & Dining', date: today() })
-    setError('')
     onClose()
   }
 
-  if (!isOpen) return null
+  if (!transaction) return null
 
   return (
     <div className="add-transaction-screen active" onClick={onClose}>
@@ -73,7 +85,7 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
       >
         {/* Header */}
         <div className="transaction-form-header">
-          <h2 style={{ fontWeight: 800, fontSize: '22px' }}>Add Transaction</h2>
+          <h2 style={{ fontWeight: 800, fontSize: '22px' }}>Edit Transaction</h2>
           <button className="close-btn" type="button" onClick={onClose}>
             <i className="ri-close-line"></i>
           </button>
@@ -82,12 +94,11 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
         {/* Form */}
         <form className="transaction-form" onSubmit={handleSubmit}>
 
-          {/* Description */}
           <div className="input-box full-width">
-            <label htmlFor="tx-description">Description</label>
+            <label htmlFor="edit-description">Description</label>
             <input
               type="text"
-              id="tx-description"
+              id="edit-description"
               name="description"
               placeholder="e.g. Monthly salary, Zomato order..."
               value={form.description}
@@ -95,12 +106,11 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Amount */}
           <div className="input-box">
-            <label htmlFor="tx-amount">Amount</label>
+            <label htmlFor="edit-amount">Amount</label>
             <input
               type="number"
-              id="tx-amount"
+              id="edit-amount"
               name="amount"
               placeholder="0.00"
               min="0"
@@ -110,31 +120,28 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Date */}
           <div className="input-box">
-            <label htmlFor="tx-date">Date</label>
+            <label htmlFor="edit-date">Date</label>
             <input
               type="date"
-              id="tx-date"
+              id="edit-date"
               name="date"
               value={form.date}
               onChange={handleChange}
             />
           </div>
 
-          {/* Type */}
           <div className="input-box">
-            <label htmlFor="tx-type">Type</label>
-            <select id="tx-type" name="type" value={form.type} onChange={handleChange}>
+            <label htmlFor="edit-type">Type</label>
+            <select id="edit-type" name="type" value={form.type} onChange={handleChange}>
               <option value="income">💹 Income</option>
               <option value="expense">💸 Expense</option>
             </select>
           </div>
 
-          {/* Category */}
           <div className="input-box">
-            <label htmlFor="tx-category">Category</label>
-            <select id="tx-category" name="category" value={form.category} onChange={handleChange}>
+            <label htmlFor="edit-category">Category</label>
+            <select id="edit-category" name="category" value={form.category} onChange={handleChange}>
               {CATEGORIES.map((c) => (
                 <option key={c.label} value={c.label}>
                   {c.icon} {c.label}
@@ -143,16 +150,14 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             </select>
           </div>
 
-          {/* Error */}
           {error && (
             <p className="full-width" style={{ color: 'var(--red)', fontSize: '0.85rem', fontWeight: 600 }}>
               {error}
             </p>
           )}
 
-          {/* Submit */}
           <button type="submit" className="btn-submit full-width">
-            Add Transaction
+            Save Changes
           </button>
 
         </form>
@@ -161,4 +166,4 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
   )
 }
 
-export default AddTransactionModal
+export default EditTransactionModal
