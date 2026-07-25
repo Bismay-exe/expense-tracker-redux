@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../components/layout/Sidebar'
 import Navbar from '../components/layout/Navbar'
 import StatCard from '../components/dashboard/StatCard'
+import TransactionTable from '../components/dashboard/TransactionTable'
 
 const Dashboard = () => {
   return (
@@ -49,7 +50,9 @@ const Dashboard = () => {
             />
           </div>
 
-          {/* CashFlowChart and TransactionTable coming in next phases */}
+          {/* CashFlowChart coming in next phase */}
+
+          <TransactionTable />
         </section>
       </div>
     </main>
