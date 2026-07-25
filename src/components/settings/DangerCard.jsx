@@ -1,13 +1,16 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { clearAllTransactions } from '../../store/transactionsSlice'
+import { useToast } from '../../contexts/ToastContext'
 
 const DangerCard = () => {
   const dispatch = useDispatch()
+  const { showToast } = useToast()
 
   const handleReset = () => {
     if (window.confirm('Are you sure? This will permanently delete ALL your transactions.')) {
       dispatch(clearAllTransactions())
+      showToast('All data has been reset', 'info')
     }
   }
 

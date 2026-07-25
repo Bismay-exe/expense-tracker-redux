@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 
-const Navbar = ({ openModal }) => {
+const Navbar = ({ openModal, onToggleSidebar }) => {
   const { theme, toggleTheme } = useTheme()
   return (
     <nav id="navbar">
@@ -9,7 +9,7 @@ const Navbar = ({ openModal }) => {
       {/* Left: Sidebar open button + Logo (shown when sidebar collapsed) */}
       <div className="nav-left">
         <div className="sidebar-open">
-          <button id="openSidebarBtn" type="button" className="sidebar-btn">
+          <button id="openSidebarBtn" type="button" className="sidebar-btn" onClick={onToggleSidebar}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="panel-svg">
               <rect width="18" height="18" x="3" y="3" rx="2" />
               <path d="M9 3v18" />

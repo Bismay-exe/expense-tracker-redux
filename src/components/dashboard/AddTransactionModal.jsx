@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTransaction } from '../../store/transactionsSlice'
+import { useToast } from '../../contexts/ToastContext'
 
 const CATEGORIES = [
   { label: 'Salary',           icon: '💼', color: 'green'  },
@@ -17,6 +18,7 @@ const today = () => new Date().toISOString().split('T')[0]
 
 const AddTransactionModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch()
+  const { showToast } = useToast()
 
   const [form, setForm] = useState({
     description: '',
@@ -60,6 +62,7 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
 
     setForm({ description: '', amount: '', type: 'expense', category: 'Food & Dining', date: today() })
     setError('')
+    showToast('Transaction added successfully!')
     onClose()
   }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { editTransaction } from '../../store/transactionsSlice'
+import { useToast } from '../../contexts/ToastContext'
 
 const CATEGORIES = [
   { label: 'Salary',           icon: '💼', color: 'green'  },
@@ -15,6 +16,7 @@ const CATEGORIES = [
 
 const EditTransactionModal = ({ transaction, onClose }) => {
   const dispatch = useDispatch()
+  const { showToast } = useToast()
 
   const [form, setForm] = useState({
     description: '',
@@ -72,6 +74,7 @@ const EditTransactionModal = ({ transaction, onClose }) => {
       })
     )
 
+    showToast('Transaction updated successfully!')
     onClose()
   }
 

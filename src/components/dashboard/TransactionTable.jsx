@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { deleteTransaction } from '../../store/transactionsSlice'
 import FilterBar from './FilterBar'
 import EditTransactionModal from './EditTransactionModal'
+import { useToast } from '../../contexts/ToastContext'
 
 const CURRENCY_SYMBOLS = {
   INR: '₹', USD: '$', EUR: '€', GBP: '£', JPY: '¥',
@@ -11,6 +12,7 @@ const CURRENCY_SYMBOLS = {
 const TransactionTable = () => {
   const dispatch = useDispatch()
   const { transactions, currency } = useSelector((state) => state.transactions)
+  const { showToast } = useToast()
   const symbol = CURRENCY_SYMBOLS[currency] || '₹'
 
   const [search, setSearch] = useState('')
@@ -111,7 +113,10 @@ const TransactionTable = () => {
                         <button
                           className="delete-tx-btn"
                           type="button"
-                          onClick={() => dispatch(deleteTransaction(tx.id))}
+                          onClick={() => {
+                            dispatch(deleteTransaction(tx.id))
+                            showToast('Transaction deleted', 'error')
+                          }}
                         >
                           <i className="fa-solid fa-trash-can"></i>
                         </button>
