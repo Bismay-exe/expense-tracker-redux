@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { clearAllTransactions } from '../../store/transactionsSlice'
 import { useToast } from '../../contexts/ToastContext'
+import { TriangleAlert } from 'lucide-react'
 
 const DangerCard = () => {
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const DangerCard = () => {
     <div className="settings-card danger-card">
       <div className="settings-card-header red-icon">
         <span className="settings-icon">
-          <i className="fa-solid fa-skull-crossbones"></i>
+          <TriangleAlert />
         </span>
         <h3>Danger Zone</h3>
       </div>

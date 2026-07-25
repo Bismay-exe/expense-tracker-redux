@@ -21,6 +21,7 @@ const MainLayout = () => {
         <Navbar
           openModal={() => setIsModalOpen(true)}
           onToggleSidebar={toggleSidebar}
+          isSidebarOpen={isSidebarOpen}
         />
         <Outlet />
       </div>

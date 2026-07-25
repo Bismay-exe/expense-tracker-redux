@@ -1,6 +1,5 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
-// Load from logged-in user's transactions + currency key
 const loadState = () => {
   try {
     const user = JSON.parse(localStorage.getItem('loggedin-user'))
@@ -22,13 +21,11 @@ const transactionsSlice = createSlice({
   name: 'transactions',
   initialState: loadState(),
   reducers: {
-    // Called after login to hydrate store with the user's saved transactions
     loadUserData: (state, action) => {
       state.transactions = action.payload.transactions || []
       state.userName = action.payload.name || 'User Name'
     },
 
-    // Called on logout to clear in-memory state
     resetUserData: (state) => {
       state.transactions = []
       state.userName = 'User Name'

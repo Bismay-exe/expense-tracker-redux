@@ -28,7 +28,6 @@ const RegisterPage = () => {
       return setError(registerResult.message)
     }
 
-    // Auto-login after registration
     const loginResult = login({ email: form.email, password: form.password })
     if (loginResult.success) {
       dispatch(loadUserData(loginResult.user))

@@ -12,10 +12,10 @@ store.subscribe(() => {
   try {
     const state = store.getState().transactions
 
-    // 1. Save currency
+    // Save currency
     localStorage.setItem('currency', state.currency)
 
-    // 2. Update loggedin-user's transactions
+    // Update loggedin-user's transactions
     const userStr = localStorage.getItem('loggedin-user')
     if (!userStr) return
 
@@ -24,7 +24,7 @@ store.subscribe(() => {
 
     localStorage.setItem('loggedin-user', JSON.stringify(updatedUser))
 
-    // 3. Sync same user in registered-users
+    // Sync same user in registered-users
     const usersStr = localStorage.getItem('registered-users')
     if (usersStr) {
       const users = JSON.parse(usersStr)
@@ -34,7 +34,6 @@ store.subscribe(() => {
       localStorage.setItem('registered-users', JSON.stringify(updatedUsers))
     }
   } catch {
-    // Silently ignore storage errors
   }
 })
 

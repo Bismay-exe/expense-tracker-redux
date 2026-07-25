@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrency } from '../../store/transactionsSlice'
+import { Coins } from 'lucide-react'
 
 const CurrencyCard = () => {
   const dispatch = useDispatch()
@@ -10,7 +11,7 @@ const CurrencyCard = () => {
     <div className="settings-card">
       <div className="settings-card-header">
         <span className="settings-icon">
-          <i className="fa-solid fa-coins"></i>
+          <Coins />
         </span>
         <h3>Currency</h3>
       </div>

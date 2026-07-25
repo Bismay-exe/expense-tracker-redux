@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Wallet, ArrowDownCircle, ArrowUpCircle, ArrowLeftRight } from 'lucide-react'
 import StatCard from '../components/dashboard/StatCard'
 import TransactionTable from '../components/dashboard/TransactionTable'
 import CashFlowChart from '../components/dashboard/CashFlowChart'
@@ -37,31 +38,30 @@ const Dashboard = () => {
         <p>Real-time tracking application</p>
       </div>
 
-      {/* Live Stat Cards */}
       <div className="cards">
         <StatCard
-          icon="ri-wallet-3-line"
+          icon={<Wallet />}
           label="Current Balance"
           value={formatAmount(balance)}
           iconColor="var(--blue)"
           iconBg="var(--blue-bg)"
         />
         <StatCard
-          icon="ri-arrow-down-circle-line"
+          icon={<ArrowDownCircle />}
           label="Total Income"
           value={formatAmount(totalIncome)}
           iconColor="var(--green)"
           iconBg="var(--green-bg)"
         />
         <StatCard
-          icon="ri-arrow-up-circle-line"
+          icon={<ArrowUpCircle />}
           label="Total Expense"
           value={formatAmount(totalExpense)}
           iconColor="var(--red)"
           iconBg="var(--red-bg)"
         />
         <StatCard
-          icon="ri-exchange-funds-line"
+          icon={<ArrowLeftRight />}
           label="Total Transactions"
           value={transactions.length}
           iconColor="var(--purple)"

@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { useAuth } from '../../contexts/AuthContext'
 import { resetUserData } from '../../store/transactionsSlice'
+import { LayoutDashboard, LogOut, Settings2, UserRound } from 'lucide-react'
 
 const Sidebar = ({ isOpen, onToggle }) => {
   const userName = useSelector((state) => state.transactions.userName)
@@ -19,7 +20,6 @@ const Sidebar = ({ isOpen, onToggle }) => {
   return (
     <aside className={`sidebar ${isOpen ? 'sidebar-maximized' : 'sidebar-minimized'}`}>
 
-      {/* Header: Logo + Title + Collapse Button */}
       <div className="sidebar-header">
         <div className="logo">
           <svg className="logo-svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 16 16">
@@ -29,11 +29,11 @@ const Sidebar = ({ isOpen, onToggle }) => {
         </div>
 
         <div className={`logo-texts ${!isOpen ? 'minimized' : ''}`}>
-          <h2>Gullak</h2>
+          <h2>Trackify</h2>
           <p>Personal Finance</p>
         </div>
 
-        <button className="sidebar-btn" type="button" onClick={onToggle}>
+        <button className={`sidebar-btn ${!isOpen ? 'hide-desktop' : ''}`} type="button" onClick={onToggle}>
           <svg className="panel-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <rect width="18" height="18" x="3" y="3" rx="2" />
             <path d="M9 3v18" />
@@ -45,14 +45,13 @@ const Sidebar = ({ isOpen, onToggle }) => {
         </button>
       </div>
 
-      {/* Navigation Links */}
       <div className="sidebar-nav">
         <NavLink
           to="/"
           end
           className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
         >
-          <i className="ri-dashboard-horizontal-line"></i>
+          <LayoutDashboard />
           <span className={!isOpen ? 'minimized' : ''}>Dashboard</span>
         </NavLink>
 
@@ -60,21 +59,20 @@ const Sidebar = ({ isOpen, onToggle }) => {
           to="/settings"
           className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
         >
-          <i className="ri-settings-4-line"></i>
+          <Settings2 />
           <span className={!isOpen ? 'minimized' : ''}>Settings</span>
         </NavLink>
       </div>
 
-      {/* User Profile + Logout */}
       <div className="profile">
         <div className="avatar">
-          <img src={`https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(userName)}`} alt="avatar" className="avatar-img" />
+          <UserRound size={20} />
         </div>
         <div className={`user-info ${!isOpen ? 'minimized' : ''}`}>
           <p className="name">{userName}</p>
         </div>
-        <button type="button" className="logout-btn" onClick={handleLogout}>
-          <i className="fa-solid fa-arrow-right-from-bracket"></i>
+        <button type="button" className={`logout-btn ${!isOpen ? 'minimized' : ''}`} onClick={handleLogout}>
+          <LogOut size={18} />
         </button>
       </div>
 

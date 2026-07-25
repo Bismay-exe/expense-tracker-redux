@@ -28,7 +28,6 @@ const EditTransactionModal = ({ transaction, onClose }) => {
 
   const [error, setError] = useState('')
 
-  // Pre-fill form when transaction changes
   useEffect(() => {
     if (transaction) {
       setForm({
@@ -86,7 +85,6 @@ const EditTransactionModal = ({ transaction, onClose }) => {
         className="form-container transaction-form-container"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="transaction-form-header">
           <h2 style={{ fontWeight: 800, fontSize: '22px' }}>Edit Transaction</h2>
           <button className="close-btn" type="button" onClick={onClose}>
@@ -94,7 +92,6 @@ const EditTransactionModal = ({ transaction, onClose }) => {
           </button>
         </div>
 
-        {/* Form */}
         <form className="transaction-form" onSubmit={handleSubmit}>
 
           <div className="input-box full-width">

@@ -74,7 +74,6 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
         className="form-container transaction-form-container"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="transaction-form-header">
           <h2 style={{ fontWeight: 800, fontSize: '22px' }}>Add Transaction</h2>
           <button className="close-btn" type="button" onClick={onClose}>
@@ -82,10 +81,8 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Form */}
         <form className="transaction-form" onSubmit={handleSubmit}>
 
-          {/* Description */}
           <div className="input-box full-width">
             <label htmlFor="tx-description">Description</label>
             <input
@@ -98,7 +95,6 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Amount */}
           <div className="input-box">
             <label htmlFor="tx-amount">Amount</label>
             <input
@@ -113,7 +109,6 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Date */}
           <div className="input-box">
             <label htmlFor="tx-date">Date</label>
             <input
@@ -125,7 +120,6 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Type */}
           <div className="input-box">
             <label htmlFor="tx-type">Type</label>
             <select id="tx-type" name="type" value={form.type} onChange={handleChange}>
@@ -134,7 +128,6 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             </select>
           </div>
 
-          {/* Category */}
           <div className="input-box">
             <label htmlFor="tx-category">Category</label>
             <select id="tx-category" name="category" value={form.category} onChange={handleChange}>
@@ -146,7 +139,6 @@ const AddTransactionModal = ({ isOpen, onClose }) => {
             </select>
           </div>
 
-          {/* Error */}
           {error && (
             <p className="full-width" style={{ color: 'var(--red)', fontSize: '0.85rem', fontWeight: 600 }}>
               {error}

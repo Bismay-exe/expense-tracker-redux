@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUserName } from '../../store/transactionsSlice'
+import { UserPen } from 'lucide-react'
 
 const ProfileCard = () => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const ProfileCard = () => {
     <div className="settings-card">
       <div className="settings-card-header">
         <span className="settings-icon">
-          <i className="fa-solid fa-user-pen"></i>
+          <UserPen />
         </span>
         <h3>Profile</h3>
       </div>

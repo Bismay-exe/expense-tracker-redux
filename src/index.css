@@ -1,15 +1,5 @@
-/* ─── Google Fonts ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-/* ─── Remixicons ───────────────────────────────────────────── */
-@import url('https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css');
-
-/* ─── Font Awesome ─────────────────────────────────────────── */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-
 @import "tailwindcss";
 
-/* ─── CSS Variables ────────────────────────────────────────── */
 :root,
 [data-theme="light"] {
     --bg-color: #ffffff;
@@ -55,7 +45,6 @@
     --border-color: #2c2c2c;
 }
 
-/* ─── Reset ────────────────────────────────────────────────── */
 * {
     margin: 0;
     padding: 0;
@@ -75,7 +64,6 @@ h1, h2, h3, h4, h5, h6, span, p {
     font-family: "Inter", sans-serif;
 }
 
-/* ─── Auth Screens ─────────────────────────────────────────── */
 .login-screen {
     position: fixed;
     top: 0; left: 0;
@@ -248,7 +236,6 @@ form {
     transform-origin: left;
 }
 
-/* ─── Transaction Modal ────────────────────────────────────── */
 .add-transaction-screen {
     z-index: 100;
     position: fixed;
@@ -330,7 +317,6 @@ form {
     }
 }
 
-/* ─── Sidebar ──────────────────────────────────────────────── */
 .sidebar {
     height: 100vh;
     background-color: var(--bg-color);
@@ -351,6 +337,14 @@ form {
     .sidebar-minimized {
         width: 60px;
         padding: 8px;
+    }
+    .sidebar-minimized .profile,
+    .sidebar-minimized .sidebar-header {
+        justify-content: center;
+    }
+    .sidebar-minimized .sidebar-nav .nav-item {
+        justify-content: center;
+        padding: 12px 0;
     }
     .minimized {
         display: none;
@@ -464,7 +458,7 @@ form {
 }
 
 .sidebar-nav .nav-item {
-    padding: 12px 16px;
+    padding: 12px 12px;
     border-radius: 14px;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -481,13 +475,17 @@ form {
     color: var(--text-color);
 }
 
-.sidebar-nav .nav-item i {
-    font-size: 20px;
-}
-
 .sidebar-nav .nav-item.active {
     background-color: var(--text-color);
     color: var(--bg-color);
+}
+
+.sidebar-nav .nav-item i,
+.sidebar-nav .nav-item svg {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 .profile {
@@ -503,6 +501,12 @@ form {
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hover-bg-color);
+    color: var(--text-color);
+    flex-shrink: 0;
 }
 
 .profile .avatar-img {
@@ -540,16 +544,20 @@ form {
     border: 1px solid var(--red);
 }
 
-.profile .logout-btn i {
+.profile .logout-btn i,
+.profile .logout-btn svg {
     font-size: 24px;
+    width: 20px;
+    height: 20px;
     color: var(--secondary-color);
+    transition: color 0.2s ease-in-out;
 }
 
-.profile .logout-btn:hover i {
+.profile .logout-btn:hover i,
+.profile .logout-btn:hover svg {
     color: var(--red);
 }
 
-/* ─── Main Layout ──────────────────────────────────────────── */
 .main-container {
     display: flex;
     height: 100vh;
@@ -561,7 +569,6 @@ form {
     overflow-y: auto;
 }
 
-/* ─── Navbar ───────────────────────────────────────────────── */
 #navbar {
     z-index: 10;
     position: sticky;
@@ -613,9 +620,12 @@ button {
     background-color: var(--hover-bg-color);
 }
 
-#themeBtn i {
+#themeBtn i,
+#themeBtn svg {
     color: var(--text-color);
     font-size: 22px;
+    width: 22px;
+    height: 22px;
 }
 
 #addTransactionBtn {
@@ -623,15 +633,21 @@ button {
     height: 45px;
     border-radius: 12px;
     background-color: var(--text-color);
-    color: var(--secondary-color);
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 #addTransactionBtn:hover {
-    color: var(--bg-color);
+    opacity: 0.9;
 }
 
-.nav-right button i {
+.nav-right button i,
+.nav-right button svg {
     font-size: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 .nav-right button span {
@@ -648,7 +664,6 @@ button {
     margin: 0 12px;
 }
 
-/* ─── Dashboard Sections ───────────────────────────────────── */
 .main-section {
     flex: 1;
     background-color: var(--secondary-bg-color);
@@ -670,7 +685,6 @@ button {
     color: var(--secondary-color);
 }
 
-/* ─── Stat Cards ───────────────────────────────────────────── */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -704,8 +718,11 @@ button {
     align-items: center;
 }
 
-.card .icon-box i {
+.card .icon-box i,
+.card .icon-box svg {
     font-size: 28px;
+    width: 28px;
+    height: 28px;
 }
 
 .card h4 {
@@ -719,7 +736,6 @@ button {
     font-weight: 700;
 }
 
-/* ─── Chart Card ───────────────────────────────────────────── */
 .chart-card {
     min-width: unset;
     padding: 24px;
@@ -744,7 +760,6 @@ button {
     position: relative;
 }
 
-/* ─── Transaction Table ────────────────────────────────────── */
 .transactions-card {
     min-width: unset;
     flex-direction: column;
@@ -878,7 +893,6 @@ thead th {
 .tx-amount.income { color: var(--green); }
 .tx-amount.expense { color: var(--red); }
 
-/* ─── Badges ───────────────────────────────────────────────── */
 .badge {
     display: inline-block;
     padding: 4px 10px;
@@ -899,7 +913,6 @@ thead th {
 .badge-violet  { background: var(--violet-bg);  color: var(--violet); }
 .badge-red     { background: var(--red-bg);     color: var(--red); }
 
-/* ─── Action Buttons ───────────────────────────────────────── */
 .edit-tx-btn,
 .delete-tx-btn {
     background: transparent;
@@ -909,6 +922,9 @@ thead th {
     height: 34px;
     cursor: pointer;
     transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .edit-tx-btn:hover {
@@ -916,16 +932,39 @@ thead th {
     border-color: var(--indigo);
 }
 
-.edit-tx-btn i { font-size: 16px; color: #6f7dff; }
+.edit-tx-btn i,
+.edit-tx-btn svg {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: #6f7dff;
+    transition: color 0.2s ease;
+}
+
+.edit-tx-btn:hover i,
+.edit-tx-btn:hover svg {
+    color: var(--indigo);
+}
 
 .delete-tx-btn:hover {
     background: var(--red-bg);
     border-color: var(--red);
 }
 
-.delete-tx-btn i { font-size: 16px; color: #ff000088; }
+.delete-tx-btn i,
+.delete-tx-btn svg {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: #ff000088;
+    transition: color 0.2s ease;
+}
 
-/* ─── Empty State ──────────────────────────────────────────── */
+.delete-tx-btn:hover i,
+.delete-tx-btn:hover svg {
+    color: var(--red);
+}
+
 .empty-state {
     text-align: center;
     padding: 60px 20px !important;
@@ -947,7 +986,6 @@ thead th {
     color: var(--secondary-color);
 }
 
-/* ─── Settings Page ────────────────────────────────────────── */
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -994,7 +1032,18 @@ thead th {
     margin-bottom: 4px;
 }
 
-.settings-icon { font-size: 22px; }
+.settings-icon {
+    font-size: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
 .red-icon { color: var(--red); }
 
 .settings-card-header h3 {
@@ -1122,7 +1171,6 @@ thead th {
     transform: translateY(-1px);
 }
 
-/* ─── Toast ────────────────────────────────────────────────── */
 .toast {
     position: fixed;
     bottom: 28px;
@@ -1155,7 +1203,6 @@ thead th {
     font-size: 18px;
 }
 
-/* ─── Responsive ───────────────────────────────────────────── */
 @media screen and (max-width: 768px) {
     .main-section {
         padding: 20px 16px;
@@ -1173,15 +1220,29 @@ thead th {
         background-color: var(--hover-bg-color);
         backdrop-filter: blur(30px);
     }
-    .nav-right { gap: 0px; }
-    #themeBtn { width: 20px; height: 20px; }
-    #addTransactionBtn {
-        padding: 18px 18px;
-        width: 20px;
-        height: 20px;
-        border-radius: 12px;
+    .nav-right { gap: 8px; }
+    #themeBtn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .nav-right button i { font-size: 18px; }
+    #addTransactionBtn {
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav-right button i,
+    .nav-right button svg {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+    }
     #addTransactionBtn span { display: none; }
     .sidebar-open { display: flex; }
 
@@ -1192,7 +1253,6 @@ thead th {
     }
 }
 
-/* ─── Toasts ───────────────────────────────────────────────── */
 .toast-container {
     position: fixed;
     top: 24px;
@@ -1250,3 +1310,6 @@ thead th {
 }
 .toast-close:hover { color: var(--text-color); }
 
+@media screen and (min-width: 769px) {
+    .hide-desktop { display: none !important; }
+}

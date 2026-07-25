@@ -21,7 +21,6 @@ const LoginPage = () => {
     e.preventDefault()
     const result = login(form)
     if (result.success) {
-      // Hydrate Redux with this user's saved transactions and name
       dispatch(loadUserData(result.user))
       navigate('/')
     } else {

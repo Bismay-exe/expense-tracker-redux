@@ -4,6 +4,7 @@ import { deleteTransaction } from '../../store/transactionsSlice'
 import FilterBar from './FilterBar'
 import EditTransactionModal from './EditTransactionModal'
 import { useToast } from '../../contexts/ToastContext'
+import { SquarePen, Trash2 } from 'lucide-react'
 
 const CURRENCY_SYMBOLS = {
   INR: '₹', USD: '$', EUR: '€', GBP: '£', JPY: '¥',
@@ -48,7 +49,6 @@ const TransactionTable = () => {
           setCategoryFilter={setCategoryFilter}
         />
 
-        {/* Table */}
         <div>
           <table>
             <thead>
@@ -108,7 +108,7 @@ const TransactionTable = () => {
                           type="button"
                           onClick={() => setEditingTx(tx)}
                         >
-                          <i className="fa-regular fa-pen-to-square"></i>
+                          <SquarePen size={16} />
                         </button>
                         <button
                           className="delete-tx-btn"
@@ -118,7 +118,7 @@ const TransactionTable = () => {
                             showToast('Transaction deleted', 'error')
                           }}
                         >
-                          <i className="fa-solid fa-trash-can"></i>
+                          <Trash2 size={16} />
                         </button>
                       </div>
                     </td>
@@ -130,7 +130,6 @@ const TransactionTable = () => {
         </div>
       </div>
 
-      {/* Edit Modal — self-contained inside TransactionTable */}
       <EditTransactionModal
         transaction={editingTx}
         onClose={() => setEditingTx(null)}

@@ -1,14 +1,14 @@
 import React from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
+import { Moon, Plus, Sun } from 'lucide-react'
 
-const Navbar = ({ openModal, onToggleSidebar }) => {
+const Navbar = ({ openModal, onToggleSidebar, isSidebarOpen }) => {
   const { theme, toggleTheme } = useTheme()
   return (
     <nav id="navbar">
 
-      {/* Left: Sidebar open button + Logo (shown when sidebar collapsed) */}
       <div className="nav-left">
-        <div className="sidebar-open">
+        <div className={`sidebar-open ${isSidebarOpen ? 'hide-desktop' : ''}`}>
           <button id="openSidebarBtn" type="button" className="sidebar-btn" onClick={onToggleSidebar}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="panel-svg">
               <rect width="18" height="18" x="3" y="3" rx="2" />
@@ -26,22 +26,21 @@ const Navbar = ({ openModal, onToggleSidebar }) => {
             </svg>
           </div>
           <div className="logo-texts">
-            <h2>Gullak</h2>
-            <p>Enterprise Finance</p>
+            <h2>Trackify</h2>
+            <p>Personal Finance</p>
           </div>
         </div>
       </div>
 
-      {/* Right: Theme toggle + Add Transaction button */}
       <div className="nav-right">
         <button id="themeBtn" type="button" onClick={toggleTheme}>
-          <i className={theme === 'dark' ? 'ri-moon-fill' : 'ri-sun-fill'}></i>
+          {theme === 'dark' ? <Moon /> : <Sun />}
         </button>
 
         <div className="separator"></div>
 
         <button id="addTransactionBtn" type="button" onClick={openModal}>
-          <i className="ri-add-line"></i>
+          <Plus size={20} />
           <span>Add Transaction</span>
         </button>
       </div>

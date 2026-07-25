@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
+import { SunMoon } from 'lucide-react'
 
 const AppearanceCard = () => {
   const { theme, toggleTheme } = useTheme()
@@ -8,7 +9,7 @@ const AppearanceCard = () => {
     <div className="settings-card">
       <div className="settings-card-header">
         <span className="settings-icon">
-          <i className="fa-solid fa-circle-half-stroke"></i>
+          <SunMoon />
         </span>
         <h3>Appearance</h3>
       </div>
