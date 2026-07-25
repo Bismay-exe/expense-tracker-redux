@@ -1,4 +1,6 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { useTheme } from '../../contexts/ThemeContext'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,29 +12,46 @@ import {
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
-// Register required Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-const DUMMY_DATA = {
-  income: 50000,
-  expense: 15000,
+const CURRENCY_SYMBOLS = {
+  INR: '₹', USD: '$', EUR: '€', GBP: '£', JPY: '¥',
 }
 
 const CashFlowChart = () => {
+  const { transactions, currency } = useSelector((state) => state.transactions)
+  const { theme } = useTheme()
+
+  const symbol = CURRENCY_SYMBOLS[currency] || '₹'
+
+  const totalIncome = transactions
+    .filter((tx) => tx.type === 'income')
+    .reduce((sum, tx) => sum + Number(tx.amount), 0)
+
+  const totalExpense = transactions
+    .filter((tx) => tx.type === 'expense')
+    .reduce((sum, tx) => sum + Number(tx.amount), 0)
+
+  const isDark = theme === 'dark'
+  const gridColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)'
+  const labelColor = isDark ? '#757575' : '#9c9c9c'
+
   const data = {
     labels: ['Income vs Expenses'],
     datasets: [
       {
         label: 'Income',
-        data: [DUMMY_DATA.income],
+        data: [totalIncome],
         backgroundColor: '#10B981',
-        borderRadius: 6,
+        borderRadius: 8,
+        borderSkipped: false,
       },
       {
         label: 'Expenses',
-        data: [DUMMY_DATA.expense],
+        data: [totalExpense],
         backgroundColor: '#E11D48',
-        borderRadius: 6,
+        borderRadius: 8,
+        borderSkipped: false,
       },
     ],
   }
@@ -43,17 +62,18 @@ const CashFlowChart = () => {
     scales: {
       y: {
         beginAtZero: true,
-        grid: {
-          color: 'rgba(128, 128, 128, 0.1)',
-        },
+        grid: { color: gridColor },
         ticks: {
-          font: { family: 'Inter' },
+          color: labelColor,
+          font: { family: 'Inter', size: 12 },
+          callback: (val) => `${symbol}${val.toLocaleString('en-IN')}`,
         },
       },
       x: {
         grid: { display: false },
         ticks: {
-          font: { family: 'Inter' },
+          color: labelColor,
+          font: { family: 'Inter', size: 12 },
         },
       },
     },
@@ -61,6 +81,7 @@ const CashFlowChart = () => {
       legend: {
         position: 'top',
         labels: {
+          color: labelColor,
           font: { family: 'Inter', size: 13 },
           usePointStyle: true,
           pointStyleWidth: 10,
@@ -68,7 +89,8 @@ const CashFlowChart = () => {
       },
       tooltip: {
         callbacks: {
-          label: (ctx) => ` ₹${ctx.parsed.y.toLocaleString('en-IN')}`,
+          label: (ctx) =>
+            ` ${symbol}${ctx.parsed.y.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`,
         },
       },
     },
@@ -78,9 +100,12 @@ const CashFlowChart = () => {
     <div className="card chart-card">
       <div className="card-header">
         <h3>Cash Flow Analysis</h3>
+        <span style={{ fontSize: '0.85rem', color: 'var(--secondary-color)', fontWeight: 500 }}>
+          Income vs Expenses
+        </span>
       </div>
       <div className="chart-body">
-        <Bar data={data} options={options} />
+        <Bar key={theme} data={data} options={options} />
       </div>
     </div>
   )
