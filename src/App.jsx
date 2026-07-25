@@ -1,8 +1,8 @@
 import React from 'react'
-import Dashboard from './pages/Dashboard'
+import Settings from './pages/Settings'
 
 const App = () => {
-  return <Dashboard />
+  return <Settings />
 }
 
 export default App
