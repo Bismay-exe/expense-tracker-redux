@@ -1,24 +1,44 @@
 import React from 'react'
 
-const FilterBar = () => {
+const FilterBar = ({
+  search,
+  setSearch,
+  typeFilter,
+  setTypeFilter,
+  categoryFilter,
+  setCategoryFilter,
+}) => {
   return (
     <div className="filters-bar">
 
       {/* Search Input */}
       <div className="search-bar">
         <i className="ri-search-line"></i>
-        <input type="text" placeholder="Search transactions..." />
+        <input
+          type="text"
+          placeholder="Search transactions..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
 
       {/* Type Filter */}
-      <select id="typeFilter">
+      <select
+        id="typeFilter"
+        value={typeFilter}
+        onChange={(e) => setTypeFilter(e.target.value)}
+      >
         <option value="all">All Types</option>
         <option value="income">Income Only</option>
         <option value="expense">Expense Only</option>
       </select>
 
       {/* Category Filter */}
-      <select id="categoryFilter">
+      <select
+        id="categoryFilter"
+        value={categoryFilter}
+        onChange={(e) => setCategoryFilter(e.target.value)}
+      >
         <option value="all">All Categories</option>
         <option value="Food & Dining">Food &amp; Dining</option>
         <option value="Shopping">Shopping</option>
