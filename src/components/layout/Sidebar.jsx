@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router'
 
 const Sidebar = () => {
   return (
@@ -29,18 +30,22 @@ const Sidebar = () => {
 
       {/* Navigation Links */}
       <div className="sidebar-nav">
-        <div className="nav-item active">
-          <a href="#">
-            <i className="ri-dashboard-horizontal-line"></i>
-            <span>Dashboard</span>
-          </a>
-        </div>
-        <div className="nav-item">
-          <a href="#">
-            <i className="ri-settings-4-line"></i>
-            <span>Settings</span>
-          </a>
-        </div>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
+        >
+          <i className="ri-dashboard-horizontal-line"></i>
+          <span>Dashboard</span>
+        </NavLink>
+
+        <NavLink
+          to="/settings"
+          className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
+        >
+          <i className="ri-settings-4-line"></i>
+          <span>Settings</span>
+        </NavLink>
       </div>
 
       {/* User Profile + Logout */}

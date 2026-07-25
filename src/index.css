@@ -467,9 +467,6 @@ form {
     padding: 12px 16px;
     border-radius: 14px;
     transition: all 0.3s ease;
-}
-
-.sidebar-nav .nav-item a {
     text-decoration: none;
     color: var(--secondary-color);
     font-weight: 500;
@@ -477,14 +474,10 @@ form {
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: all 0.3s ease;
 }
 
 .sidebar-nav .nav-item:hover {
     background-color: var(--hover-bg-color);
-}
-
-.sidebar-nav .nav-item:hover a {
     color: var(--text-color);
 }
 
@@ -494,10 +487,6 @@ form {
 
 .sidebar-nav .nav-item.active {
     background-color: var(--text-color);
-    color: var(--bg-color);
-}
-
-.sidebar-nav .nav-item.active a {
     color: var(--bg-color);
 }
 
