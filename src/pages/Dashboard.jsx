@@ -3,6 +3,7 @@ import Sidebar from '../components/layout/Sidebar'
 import Navbar from '../components/layout/Navbar'
 import StatCard from '../components/dashboard/StatCard'
 import TransactionTable from '../components/dashboard/TransactionTable'
+import CashFlowChart from '../components/dashboard/CashFlowChart'
 
 const Dashboard = () => {
   return (
@@ -50,7 +51,7 @@ const Dashboard = () => {
             />
           </div>
 
-          {/* CashFlowChart coming in next phase */}
+          <CashFlowChart />
 
           <TransactionTable />
         </section>
