@@ -20,7 +20,7 @@ store.subscribe(() => {
     if (!userStr) return
 
     const user = JSON.parse(userStr)
-    const updatedUser = { ...user, transactions: state.transactions }
+    const updatedUser = { ...user, name: state.userName, transactions: state.transactions }
 
     localStorage.setItem('loggedin-user', JSON.stringify(updatedUser))
 
