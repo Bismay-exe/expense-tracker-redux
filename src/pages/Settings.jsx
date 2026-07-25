@@ -2,6 +2,8 @@ import React from 'react'
 import Sidebar from '../components/layout/Sidebar'
 import Navbar from '../components/layout/Navbar'
 import ProfileCard from '../components/settings/ProfileCard'
+import CurrencyCard from '../components/settings/CurrencyCard'
+import AppearanceCard from '../components/settings/AppearanceCard'
 
 const Settings = () => {
   return (
@@ -21,7 +23,9 @@ const Settings = () => {
 
           <div className="settings-grid">
             <ProfileCard />
-            {/* CurrencyCard, AppearanceCard, DangerCard coming next */}
+            <CurrencyCard />
+            <AppearanceCard />
+            {/* DangerCard coming next */}
           </div>
         </section>
       </div>
