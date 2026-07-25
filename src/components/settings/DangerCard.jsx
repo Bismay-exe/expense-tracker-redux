@@ -1,6 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { clearAllTransactions } from '../../store/transactionsSlice'
 
 const DangerCard = () => {
+  const dispatch = useDispatch()
+
+  const handleReset = () => {
+    if (window.confirm('Are you sure? This will permanently delete ALL your transactions.')) {
+      dispatch(clearAllTransactions())
+    }
+  }
+
   return (
     <div className="settings-card danger-card">
       <div className="settings-card-header red-icon">
@@ -14,7 +24,7 @@ const DangerCard = () => {
         This will permanently delete all your transactions and reset all settings.
       </p>
 
-      <button className="btn-danger" type="button">
+      <button className="btn-danger" type="button" onClick={handleReset}>
         Reset All Data
       </button>
     </div>

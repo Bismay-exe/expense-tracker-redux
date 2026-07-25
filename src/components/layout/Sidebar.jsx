@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router'
+import { useSelector } from 'react-redux'
 
 const Sidebar = () => {
+  const userName = useSelector((state) => state.transactions.userName)
   return (
     <aside className="sidebar sidebar-maximized">
 
@@ -51,10 +53,10 @@ const Sidebar = () => {
       {/* User Profile + Logout */}
       <div className="profile">
         <div className="avatar">
-          <img src="https://api.dicebear.com/9.x/initials/svg?seed=User" alt="avatar" className="avatar-img" />
+          <img src={`https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(userName)}`} alt="avatar" className="avatar-img" />
         </div>
         <div className="user-info">
-          <p className="name">User Name</p>
+          <p className="name">{userName}</p>
         </div>
         <button type="button" className="logout-btn">
           <i className="fa-solid fa-arrow-right-from-bracket"></i>

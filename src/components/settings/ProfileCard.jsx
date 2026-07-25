@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setUserName } from '../../store/transactionsSlice'
 
 const ProfileCard = () => {
+  const dispatch = useDispatch()
+  const userName = useSelector((state) => state.transactions.userName)
+  const [name, setName] = useState(userName)
+
+  const handleSave = () => {
+    if (name.trim()) dispatch(setUserName(name.trim()))
+  }
+
   return (
     <div className="settings-card">
       <div className="settings-card-header">
@@ -16,10 +26,11 @@ const ProfileCard = () => {
         id="settings-name"
         placeholder="Your name"
         maxLength={40}
-        defaultValue="User Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
 
-      <button className="btn-primary" type="button">
+      <button className="btn-primary" type="button" onClick={handleSave}>
         Save Name
       </button>
     </div>

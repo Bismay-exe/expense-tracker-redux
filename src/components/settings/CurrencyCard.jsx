@@ -1,6 +1,11 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCurrency } from '../../store/transactionsSlice'
 
 const CurrencyCard = () => {
+  const dispatch = useDispatch()
+  const currency = useSelector((state) => state.transactions.currency)
+
   return (
     <div className="settings-card">
       <div className="settings-card-header">
@@ -11,7 +16,11 @@ const CurrencyCard = () => {
       </div>
 
       <label htmlFor="settings-currency">Preferred Currency</label>
-      <select id="settings-currency" defaultValue="INR">
+      <select
+        id="settings-currency"
+        value={currency}
+        onChange={(e) => dispatch(setCurrency(e.target.value))}
+      >
         <option value="USD">🇺🇸 USD – US Dollar ($)</option>
         <option value="EUR">🇪🇺 EUR – Euro (€)</option>
         <option value="GBP">🇬🇧 GBP – British Pound (£)</option>
