@@ -1,4 +1,5 @@
 import React from 'react'
+import FilterBar from './FilterBar'
 
 const DUMMY_TRANSACTIONS = [
   {
@@ -40,7 +41,7 @@ const TransactionTable = () => {
         <h3>All Transactions</h3>
       </div>
 
-      {/* Table wrapper */}
+      <FilterBar />
       <div>
         <table>
           <thead>
