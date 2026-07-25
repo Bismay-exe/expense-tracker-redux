@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 
-const Navbar = () => {
+const Navbar = ({ openModal }) => {
   const { theme, toggleTheme } = useTheme()
   return (
     <nav id="navbar">
@@ -40,7 +40,7 @@ const Navbar = () => {
 
         <div className="separator"></div>
 
-        <button id="addTransactionBtn" type="button">
+        <button id="addTransactionBtn" type="button" onClick={openModal}>
           <i className="ri-add-line"></i>
           <span>Add Transaction</span>
         </button>
