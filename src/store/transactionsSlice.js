@@ -1,6 +1,18 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
-const initialState = {
+// Load persisted state from localStorage
+const loadState = () => {
+  try {
+    const data = localStorage.getItem('fintrack-state')
+    return data ? JSON.parse(data) : undefined
+  } catch {
+    return undefined
+  }
+}
+
+const persisted = loadState()
+
+const initialState = persisted || {
   transactions: [],
   currency: 'INR',
   userName: 'User Name',

@@ -17,7 +17,7 @@ const Sidebar = () => {
         </div>
 
         <div className="logo-texts">
-          <h2>FinTrack Pro</h2>
+          <h2>Expense Tracker</h2>
           <p>Enterprise Finance</p>
         </div>
 
