@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTheme } from '../../contexts/ThemeContext'
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme()
   return (
     <nav id="navbar">
 
@@ -32,8 +34,8 @@ const Navbar = () => {
 
       {/* Right: Theme toggle + Add Transaction button */}
       <div className="nav-right">
-        <button id="themeBtn" type="button">
-          <i className="ri-sun-fill"></i>
+        <button id="themeBtn" type="button" onClick={toggleTheme}>
+          <i className={theme === 'dark' ? 'ri-moon-fill' : 'ri-sun-fill'}></i>
         </button>
 
         <div className="separator"></div>
