@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTheme } from '../../contexts/ThemeContext'
 
 const AppearanceCard = () => {
+  const { theme, toggleTheme } = useTheme()
+
   return (
     <div className="settings-card">
       <div className="settings-card-header">
@@ -13,7 +16,12 @@ const AppearanceCard = () => {
       <div className="toggle-row">
         <span>Dark Mode</span>
         <label className="toggle-switch" htmlFor="dark-toggle">
-          <input type="checkbox" id="dark-toggle" />
+          <input
+            type="checkbox"
+            id="dark-toggle"
+            checked={theme === 'dark'}
+            onChange={toggleTheme}
+          />
           <span className="toggle-slider"></span>
         </label>
       </div>
