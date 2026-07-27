@@ -7,15 +7,12 @@ const store = configureStore({
   },
 })
 
-// Sync Redux state back into the 4 localStorage keys
 store.subscribe(() => {
   try {
     const state = store.getState().transactions
 
-    // Save currency
     localStorage.setItem('currency', state.currency)
 
-    // Update loggedin-user's transactions
     const userStr = localStorage.getItem('loggedin-user')
     if (!userStr) return
 
@@ -24,7 +21,6 @@ store.subscribe(() => {
 
     localStorage.setItem('loggedin-user', JSON.stringify(updatedUser))
 
-    // Sync same user in registered-users
     const usersStr = localStorage.getItem('registered-users')
     if (usersStr) {
       const users = JSON.parse(usersStr)
