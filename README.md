@@ -4,8 +4,7 @@ A clean, fast personal expense tracker built with **React** and **Redux Toolkit*
 
 Built as part of the **Redux Toolkit Mini Hackathon** at Sheryians Coding School.
 
-<!-- 🖼️ Add a screenshot or GIF of the dashboard here -->
-<!-- ![Trackify Dashboard](./screenshots/dashboard.png) -->
+![Trackify Dashboard](./screenshots/dashboard.png)
 
 ---
 
