@@ -1,7 +1,5 @@
 # My Redux Toolkit Learning Journey
 
-*A beginner's documentation — written while building an Expense Tracker app*
-
 ---
 
 ## Introduction
