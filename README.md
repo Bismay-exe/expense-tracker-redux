@@ -97,7 +97,11 @@ Auth, theme, and toast notifications are intentionally kept in **React Context**
 
 This project was built as part of a self-learning challenge on Redux Toolkit. My full write-up on what I learned — core concepts, data flow, challenges faced, and more — is available here:
 
-📄 [Redux Toolkit Learning Documentation](./docs/Redux-Toolkit-Documentation.pdf)
+📄 [Redux Toolkit Documentation](./docs/documentation.docx)
+
+or
+
+📄 [Docs Link](https://docs.google.com/document/d/1hIlUDzo2um0gO45NOQ_zK07wruC8W6md/edit?usp=sharing&ouid=101324621782907651134&rtpof=true&sd=true)
 
 ---
 
